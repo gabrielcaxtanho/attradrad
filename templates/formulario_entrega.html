@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Radiance</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+        <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f9f9f9;
+            margin: 0;
+            color: #333;
+        }
+
+
+        .card {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 30px;
+            border-radius: 20px;
+            background: #fff;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+        }
+
+        .form-title {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+            color: #444;
+        }
+
+        .form-container {
+            display: grid;
+            gap: 15px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            transition: border 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        .submit-button {
+            padding: 12px;
+            background: #007bff;
+            color: white;
+            font-weight: bold;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .submit-button:hover {
+            background: #0056b3;
+        }
+
+        .resumo-title {
+            margin-top: 25px;
+            font-size: 1.2rem;
+            color: #555;
+        }
+
+        .resumo-pedido {
+            list-style: none;
+            padding: 0;
+        }
+
+        .resumo-pedido li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        footer.rodape {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            background: #111;
+            color: #eee;
+        }
+    </style>
+</head>
+<body>
+<!-- MENU SUPERIOR -->
+    <header class="top-bar">
+        <div class="menu2header">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='lotus.png') }}" alt="Logo" class="logo-icon" style="border-radius: 10px; width: 100px;height: auto; " ">
+            </div>
+        <div class="menu3header">
+            <div class="search-box">
+                <input type="text" placeholder="o que está buscando hoje?">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+            </div>
+        </div>
+        <div class="menu-icons">
+        <a href="produtos"><i class="fa-solid fa-list"></i> Nossos Produtos</a>
+        <a href="/"><i class="fa-solid fa-house"></i> Início</a>
+        <a href="ajuda"><i class="fas fa-question-circle"></i> ajuda</a>
+        <a href="carrinho"><i class="fas fa-shopping-bag"></i> carrinho</a>
+
+
+    </div>
+    </header>
+    </div>
+    </header>
+      <!-- CARD PRINCIPAL -->
+    <main class="card">
+        <section class="intro">
+            <h2 class="form-title">Preencha os dados para finalizar seu pedido</h2>
+
+            <form method="POST" action="{{ url_for('finalizar_pedido') }}" class="form-container">
+                <div class="form-group">
+                    <label for="nome">Nome Completo</label>
+                    <input type="text" id="nome" name="nome" placeholder="Digite seu nome" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email" placeholder="seuemail@exemplo.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="telefone">Telefone para Contato</label>
+                    <input type="text" id="telefone" name="telefone" placeholder="(99) 99999-9999" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="endereco">Endereço para Entrega</label>
+                    <textarea id="endereco" name="endereco" rows="4" placeholder="Rua, número, bairro, cidade" required></textarea>
+                </div>
+
+                <button type="submit" class="submit-button">Concluir Pedido</button>
+            </form>
+        </section>
+
+        <section>
+            <h3 class="resumo-title">Resumo do Pedido:</h3>
+            <ul class="resumo-pedido">
+                {% for item in session['carrinho'] %}
+                    <li>{{ item['nome'] }} - R$ {{ item['preco'] }}</li>
+                {% endfor %}
+            </ul>
+        </section>
+    </main>
+
+    <!-- RODAPÉ -->
+    <footer class="rodape">
+        <p>&copy; 2025 Inture. Todos os direitos reservados.</p>
+    </footer>
+
+</body>
+</html>

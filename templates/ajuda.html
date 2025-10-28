@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Radiance</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+<!-- MENU SUPERIOR -->
+    <header class="top-bar">
+        <div class="menu2header">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='lotus.png') }}" alt="Logo" class="logo-icon" style="border-radius: 10px; width: 100px;height: auto; " ">
+            </div>
+        <div class="menu3header">
+            <div class="search-box">
+                <input type="text" placeholder="o que está buscando hoje?">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+            </div>
+        </div>
+        <div class="menu-icons">
+        <a href="produtos"><i class="fa-solid fa-list"></i> Nossos Produtos</a>
+        <a href="/"><i class="fa-solid fa-house"></i> Início</a>
+        <a href="ajuda"><i class="fas fa-question-circle"></i> ajuda</a>
+        <a href="carrinho"><i class="fas fa-shopping-bag"></i> carrinho</a>
+
+
+    </div>
+    </header>
+    </div>
+    </header>
+
+
+
+
+    <!-- SEÇÃO DE AJUDA -->
+    <section class="help-central" style="    padding-top: 10%;">
+        <section class="help-section">
+            <h2>Precisa de ajuda?</h2>
+
+
+
+              <details>
+                <summary>
+                  Quais são as formas de pagamento disponíveis?
+                  <span class="arrow">▼</span>
+                </summary>
+                <div class="help-content">
+                  <p>Atualmente aceitamos:</p>
+                  <ul>
+                    <li>Cartão de crédito (Visa, Mastercard, Elo, etc.)</li>
+                    <li>Pix</li>
+                    <li>Boleto bancário</li>
+                  </ul>
+                </div>
+              </details>
+
+              <details>
+                <summary>
+                  Posso trocar ou devolver um produto?
+                  <span class="arrow">▼</span>
+                </summary>
+                <div class="help-content">
+                  <p>Sim! Você pode solicitar a troca ou devolução em até 7 dias após o recebimento. Consulte nossa <a href="#" class="link">política de trocas</a>.</p>
+                </div>
+              </details>
+
+              <details>
+                <summary>
+                  Como entro em contato com o suporte?
+                  <span class="arrow">▼</span>
+                </summary>
+                <div class="help-content">
+                  <p>Nosso suporte funciona de segunda a sexta, das 9h às 18h. Você pode enviar uma mensagem pelo <a href="#" class="link">formulário de contato</a>.</p>
+                  <div class="alert">Tempo médio de resposta: 1 a 2 dias úteis</div>
+                </div>
+              </details>
+        </section>
+</section>
+
+    <footer class="rodape">
+        <p>© 2025 Inture. Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>

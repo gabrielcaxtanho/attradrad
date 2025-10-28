@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Seu Carrinho - Inture</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- MENU SUPERIOR -->
+    <header class="top-bar">
+        <div class="menu2header">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='lotus.png') }}" alt="Logo" class="logo-icon" style="border-radius: 10px; width: 100px;height: auto; " ">
+            </div>
+        <div class="menu3header">
+            <div class="search-box">
+                <input type="text" placeholder="o que está buscando hoje?">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+            </div>
+        </div>
+        <div class="menu-icons">
+        <a href="produtos"><i class="fa-solid fa-list"></i> Nossos Produtos</a>
+        <a href="/"><i class="fa-solid fa-house"></i> Início</a>
+        <a href="ajuda"><i class="fas fa-question-circle"></i> ajuda</a>
+        <a href="carrinho"><i class="fas fa-shopping-bag"></i> carrinho</a>
+
+
+    </div>
+    </header>
+    <div class="card" style="/* max-width: 1000px; */margin: 40px auto;padding: 30px;border-radius: 20px;background: white;box-shadow: 0 6px 15px rgba(0,0,0,0.1);">
+    <section class="intro">
+        <h1>Seu Carrinho</h1>
+        <p>Confira seus produtos antes de finalizar a compra.</p>
+    </section>
+
+    <section class="carrinho-container">
+        {% if carrinho %}
+        <div style="background: white; padding: 20px; border-radius: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); max-width: 1000px; margin: 0 auto;">
+            <table class="tabela-carrinho" style="width: 100%; border-collapse: collapse;">
+                <thead>
+                    <tr style="text-align: left; border-bottom: 2px solid #ccc;">
+                        <th style="padding: 10px;">Produto</th>
+                        <th style="padding: 10px;">Preço</th>
+                        <th style="padding: 10px;">Qtd</th>
+                        <th style="padding: 10px;">Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in carrinho %}
+                    <tr style="border-bottom: 1px solid #eee; vertical-align: middle;">
+                        <td style="padding: 16px 0;">
+                            <div>
+                                <strong>{{ item.nome }}</strong><br>
+                                <a href="{{ url_for('remover_item', produto_id=item.id) }}" style="color: #a05c3d; font-size: 14px;">Remover</a>
+                            </div>
+                        </td>
+                        <td style="padding: 10px;">R$ {{ "%.2f"|format(item.preco) }}</td>
+                        <td style="padding: 10px;">{{ item.get('quantidade', 1) }}</td>
+                        <td style="padding: 10px;">R$ {{ "%.2f"|format(item.preco * item.get('quantidade', 1)) }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <div class="cupom" style="margin-top: 30px;">
+                <label style="font-weight: bold;">CUPOM DE DESCONTO</label>
+                <form action="/aplicar_cupom" method="POST" style="display: flex; gap: 10px; margin-top: 10px;">
+                    <input type="text" name="cupom" placeholder="Código" style="padding: 8px; border-radius: 8px; border: 1px solid #ccc; flex: 1;">
+                    <button type="submit" style="padding: 8px 16px; background-color: #c1a184; color: white; border: none; border-radius: 8px;">Adicionar</button>
+                </form>
+            </div>
+
+
+            <div class="resumo" style="margin-top: 40px; background: #fff8f4; padding: 20px; border-radius: 12px;">
+                <div class="valores" style="font-size: 16px;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                        <span>Subtotal</span> <strong>R$ {{ "%.2f"|format(subtotal) }}</strong>
+                    </div>
+                    <div style="margin-top: 20px;">
+        <label for="cep">Calcular Frete (CEP):</label>
+        <div style="display: flex; gap: 10px; margin-top: 10px;">
+            <input type="text" id="cep" placeholder="Digite seu CEP" style="padding: 8px; border-radius: 8px; border: 1px solid #ccc;">
+            <button type="button" onclick="calcularFrete()" style="padding: 8px 16px; background-color: #c1a184; color: white; border: none; border-radius: 8px;">Calcular</button>
+        </div>
+        <p id="freteResultado" style="margin-top: 10px;"></p>
+
+        <!-- MENSAGEM DE AVISO -->
+        <p style="color: red; font-size: 14px; margin-top: 5px;">
+            * Caso o frete não seja selecionado, a compra será considerada como retirada no local.
+        </p>
+    </div>
+
+    <div style="display: flex; justify-content: space-between; font-weight: bold; font-size: 18px;">
+        <span>Total Com Frete</span> <strong id="valorTotal">R$ {{ "%.2f"|format(total) }}</strong>
+    </div>
+                <form action="/checkout" method="GET" style="margin-top: 20px;">
+                    <button class="finalizar" type="submit" style="width: 100%;padding: 14px;background-color: #fd770c;color: white;border: none;border-radius: 10px;font-size: 16px;cursor: pointer;">
+                        <i class="fas fa-shopping-cart"></i> Finalizar Pedido
+                    </button>
+                </form>
+                <form action="{{ url_for('limpar_carrinho') }}" method="GET" style="margin-top: 10px;">
+                    <button type="submit" style="width: 100%; padding: 10px; background-color: #eee; color: #a05c3d; border: none; border-radius: 10px; font-size: 14px; cursor: pointer;">
+                        <i class="fas fa-trash"></i> Limpar Carrinho
+                    </button>
+                </form>
+            </div>
+            <div style="text-align: center; margin-top: 20px;">
+                <a href="/produtos" style="text-decoration: none; color: #a05c3d;">Escolher mais produtos</a>
+            </div>
+        </div>
+        {% else %}
+            <p style="text-align: center; margin-top: 40px;">Seu carrinho está vazio.</p>
+        {% endif %}
+    </section>
+</div>
+<footer class="rodape">
+    <p>© 2025 Inture. Todos os direitos reservados.</p>
+</footer>
+<script>
+function calcularFrete() {
+    const cep = document.getElementById("cep").value;
+    const resultado = document.getElementById("freteResultado");
+    const totalElement = document.getElementById("valorTotal");
+
+    if (!cep || cep.length < 8) {
+        resultado.textContent = "CEP inválido.";
+        resultado.style.color = "red";
+        return;
+    }
+
+    fetch(`/calcular_frete?cep=${cep}`)
+        .then(res => res.json())
+        .then(data => {
+            if (data.erro) {
+                resultado.textContent = data.mensagem;
+                resultado.style.color = "red";
+            } else {
+                resultado.textContent = `Frete para ${data.cidade}, ${data.uf}: R$ ${data.valor.toFixed(2)} (prazo: ${data.prazo} dias)`;
+                resultado.style.color = "green";
+
+                const subtotal = parseFloat("{{ '%.2f'|format(subtotal) }}".replace(',', '.'));
+                const frete = parseFloat(data.valor);
+                const totalComFrete = subtotal + frete;
+
+                if (totalElement) {
+                    totalElement.textContent = `R$ ${totalComFrete.toFixed(2)}`;
+                }
+
+                // 🔽 ATUALIZA O FRETE NO BACKEND (session)
+                fetch('/atualizar_frete', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+            }
+        })
+        .catch(() => {
+            resultado.textContent = "Erro ao calcular frete.";
+            resultado.style.color = "red";
+        });
+}
+</script>
+</body>
+</html>

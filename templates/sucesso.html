@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>RADIANCE</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+<!-- MENU SUPERIOR -->
+    <header class="top-bar">
+        <div class="menu2header">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='lotus.png') }}" alt="Logo" class="logo-icon" style="border-radius: 10px; width: 100px;height: auto; " ">
+            </div>
+        <div class="menu3header">
+            <div class="search-box">
+                <input type="text" placeholder="o que está buscando hoje?">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+            </div>
+        </div>
+        <div class="menu-icons">
+        <a href="produtos"><i class="fa-solid fa-list"></i> Nossos Produtos</a>
+        <a href="/"><i class="fa-solid fa-house"></i> Início</a>
+        <a href="ajuda"><i class="fas fa-question-circle"></i> ajuda</a>
+        <a href="carrinho"><i class="fas fa-shopping-bag"></i> carrinho</a>
+
+
+    </div>
+    </header>
+    </div>
+    </header>
+
+
+
+<div class="card" style="display: flex;    justify-content: center;    flex-direction: column;    align-content: center;    align-items: center;">
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="confirmation-container">
+        <div class="confirmation-box">
+            <h1><i class="fa-solid fa-circle-check" style="color: #4BB543;"></i> Pedido realizado com sucesso!</h1>
+            <p>Seu número de pedido é: <strong>#{{ pedido_id }}</strong></p>
+            <p>Você receberá um e-mail com a confirmação e os detalhes do envio.</p>
+            <a class="btn-voltar" href="{{ url_for('listar_produtos') }}">Continuar comprando</a>
+        </div>
+    </main>
+</div>
+    <!-- RODAPÉ -->
+    <footer class="rodape">
+        <p>&copy; 2025 Radiance. Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Checkout</title>
+    <script src="https://sdk.mercadopago.com/js/v2"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <!-- MENU SUPERIOR -->
+    <header class="top-bar">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='lotus.png') }}" alt="Logo" class="logo-icon" style="border-radius: 10px; width: 100px;height: auto; ">
+        </div>
+
+        <div class="search-box">
+            <input type="text" placeholder="o que está buscando hoje?">
+            <button><i class="fas fa-search"></i></button>
+        </div>
+
+         <div class="menu-icons">
+        <a href="produtos"><i class="fa-solid fa-list"></i> Nossos Produtos</a>
+        <a href="/"><i class="fa-solid fa-house"></i> Início</a>
+        <a href="ajuda"><i class="fas fa-question-circle"></i> ajuda</a>
+        <a href="carrinho"><i class="fas fa-shopping-bag"></i> carrinho</a>
+
+
+    </div>
+    </header>
+
+    <!-- CONTEÚDO DO CHECKOUT -->
+    <main class="checkout-container">
+        <div class="checkout-box">
+            <i class="fas fa-lock fa-2x" style="color:#4caf50; margin-bottom: 10px;"></i>
+            <h2 class="checkout-title">Finalizar compra</h2>
+            <p class="checkout-total"><i class="fas fa-wallet"></i> Total: <strong>R$ {{ total }}</strong></p>
+
+            <p class="checkout-info">
+                <i class="fas fa-shield-alt"></i> Pague com <strong>Mercado Pago</strong> e garanta uma compra 100% segura,<br>
+                com proteção contra fraudes e criptografia de ponta.
+            </p>
+
+            <a href="{{ init_point }}" target="_blank" class="btn btn-success">Pagar com Mercado Pago</a>
+
+            <div style="margin-top: 20px;">
+                <img src="https://img.icons8.com/color/48/000000/visa.png" alt="Visa">
+                <img src="https://img.icons8.com/color/48/000000/mastercard-logo.png" alt="MasterCard">
+                <img src="https://img.icons8.com/color/48/000000/boleto-bankario.png" alt="Boleto">
+                <img src="https://img.icons8.com/color/48/000000/pix.png" alt="Pix">
+            </div>
+        </div>
+    </main>
+
+    <footer class="rodape">
+        <p>© 2025 Inture. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        const mp = new MercadoPago("APP_USR-d70467be-6132-4898-97b7-dfb669a462cb", {
+            locale: 'pt-BR'
+        });
+
+        mp.checkout({
+            preference: {
+                id: "{{ preference_id }}"
+            },
+            render: {
+                container: "#wallet_container",
+                label: "Pagar com Mercado Pago"
+            }
+        });
+    </script>
+</body>
+</html>

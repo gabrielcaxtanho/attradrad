@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>RADIANCE</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .flash-messages {
+            margin: 20px auto;
+            max-width: 900px;
+            text-align: center;
+        }
+
+        .alert {
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            font-weight: bold;
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+    </style>
+</head>
+<body>
+<!-- MENU SUPERIOR -->
+    <header class="top-bar">
+        <div class="menu2header">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='lotus.png') }}" alt="Logo" class="logo-icon" style="border-radius: 10px; width: 100px;height: auto; ">
+            </div>
+        <div class="menu3header">
+            <div class="search-box">
+                <input type="text" placeholder="o que está buscando hoje?">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+            </div>
+        </div>
+        <div class="menu-icons">
+        <a href="produtos"><i class="fa-solid fa-list"></i> Nossos Produtos</a>
+        <a href="/"><i class="fa-solid fa-house"></i> Início</a>
+        <a href="ajuda"><i class="fas fa-question-circle"></i> ajuda</a>
+        <a href="carrinho"><i class="fas fa-shopping-bag"></i> carrinho</a>
+
+
+    </div>
+    </header>
+
+<!-- ALERTA FLUTUANTE -->
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <div id="toast-container">
+      {% for message in messages %}
+        <div class="toast show">
+          <i class="fas fa-check-circle icon"></i>
+          {{ message }}
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+
+<!-- INTRO -->
+<section class="intro">
+    <h1>Super Descontos</h1>
+    <p>Confira nossa seleção especial de produtos com descontos imperdíveis!</p>
+</section>
+
+<!-- ÁREA DE CATEGORIAS + PRODUTOS -->
+<div class="main-content">
+    <!-- SIDEBAR DE CATEGORIAS -->
+    <aside class="sidebar">
+        <h3 class="sidebar-title">Categorias</h3>
+        <ul class="category-list">
+            <li><a href="{{ baseUrl }}/produtos?pagina=1"><i class="fas fa-th-large"></i> Todos os Produtos</a></li>
+            <li><a href="{{ baseUrl }}/produtos?pagina=1&idCategoria=4459434"><i class="fas fa-heart"></i> Pele</a></li>
+            <li><a href="{{ baseUrl }}/produtos?pagina=1&idCategoria=4459435"><i class="fas fa-leaf"></i> Saude e bem estar</a></li>
+            <li><a href="{{ baseUrl }}/produtos?pagina=1&idCategoria=4459445"><i class="fas fa-cut"></i> Capilar</a></li>
+            <li><a href="{{ baseUrl }}/produtos?pagina=1&idCategoria=4459434"><i class="fas fa-user"></i> Cuidados com o rosto</a></li>
+            <li><a href="{{ baseUrl }}/produtos?pagina=1&idCategoria=5422204"><i class="fas fa-shoe-prints"></i> Pés e mãos</a></li>
+            <li><a href="{{ baseUrl }}/produtos?pagina=1&idCategoria=5422205"><i class="fas fa-female"></i> Cuidado intimo</a></li>
+            <li><a href="{{ baseUrl }}/produtos?pagina=1&idCategoria=5422206"><i class="fas fa-spa"></i> Massagem</a></li>
+            <li><a href="{{ baseUrl }}/produtos?pagina=1&idCategoria=5422218"><i class="fas fa-box-open"></i> Eroticos</a></li>
+        </ul>
+    </aside>
+
+    <!-- GRADE DE PRODUTOS -->
+    <div class="product-grid" id="productGrid">
+        {% for produto in produtos %}
+        <div class="product-card">
+            <div class="card-header">
+                {% if produto.get('lancamento') %}
+                    <span class="tag">lançamento</span>
+                {% endif %}
+                <i class="fas fa-heart favorite-icon"></i>
+            </div>
+
+            <img src="{{ produto['imagemURL'] if produto.get('imagemURL') else url_for('static', filename='placeholder.jpg') }}" alt="{{ produto['nome'] }}" class="product-image">
+
+            <div class="product-info">
+                <p class="marca">Inture</p>
+                <h2 class="product-name">{{ produto['nome'] }}</h2>
+
+                {% if produto.get('precoOriginal') %}
+    <p class="preco-antigo">R$ {{ '%.2f'|format(produto['precoOriginal']) }}</p>
+    <p class="preco-novo">R$ {{ '%.2f'|format(produto['preco']) }}</p>
+    <span class="desconto">
+        -{{ ((produto['precoOriginal'] - produto['preco']) / produto['precoOriginal'] * 100) | round(0) }}%
+    </span>
+{% else %}
+    <p class="preco-unico">R$ {{ '%.2f'|format(produto['preco']) }}</p>
+{% endif %}
+
+<!-- Parcelamento -->
+<p class="parcelamento">ou 2x de R$ {{ '%.2f'|format(produto['preco'] / 2) }} sem juros</p>
+
+                <form method="POST" action="/adicionar_carrinho">
+                    <input type="hidden" name="produto_id" value="{{ produto['id'] }}">
+                    <input type="hidden" name="nome" value="{{ produto['nome'] }}">
+                    <input type="hidden" name="preco" value="{{ produto['preco'] }}">
+                    <input type="hidden" name="imagem_url" value="{{ produto['imagemURL'] if produto.get('imagemURL') else '' }}">
+                    <input type="hidden" name="descricao" value="{{ produto['descricaoCurta'] }}">
+                    <button type="submit" class="add-button">Adicionar ao Carrinho</button>
+                </form>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<footer class="rodape">
+    <p>&copy; 2025 Inture. Todos os direitos reservados.</p>
+</footer>
+<script>
+  // Remove o toast automaticamente após 4 segundos
+  setTimeout(() => {
+    const toast = document.querySelector('.toast');
+    if (toast) {
+      toast.classList.remove('show');
+      setTimeout(() => toast.remove(), 200); // Remove da DOM
+    }
+  }, 2000);
+</script>
+<script>
+  const searchInput = document.getElementById("searchInput");
+  const productCards = document.querySelectorAll(".product-card");
+
+  searchInput.addEventListener("input", function () {
+    const filter = this.value.toLowerCase();
+    productCards.forEach(card => {
+      const productName = card.querySelector(".product-name").textContent.toLowerCase();
+      if (productName.includes(filter)) {
+        card.style.display = "block";
+      } else {
+        card.style.display = "none";
+      }
+    });
+  });
+</script>
+</body>
+</html>

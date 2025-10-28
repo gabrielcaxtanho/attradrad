@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>RADIANCE</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- MENU SUPERIOR -->
+    <header class="top-bar">
+        <div class="menu2header">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='lotus.png') }}" alt="Logo" class="logo-icon" style="border-radius: 10px; width: 100px;height: auto; " ">
+            </div>
+        <div class="menu3header">
+            <div class="search-box">
+                <input type="text" placeholder="o que está buscando hoje?">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+            </div>
+        </div>
+        <div class="menu-icons">
+        <a href="produtos"><i class="fa-solid fa-list"></i> Nossos Produtos</a>
+        <a href="/"><i class="fa-solid fa-house"></i> Início</a>
+        <a href="ajuda"><i class="fas fa-question-circle"></i> ajuda</a>
+        <a href="carrinho"><i class="fas fa-shopping-bag"></i> carrinho</a>
+
+
+    </div>
+    </header>
+
+     <!-- CONTEÚDO PRINCIPAL -->
+    <section class="intro">
+        <h1>Bem-vindo à Radiance</h1>
+        <p>Descubra o melhor da beleza natural com ofertas exclusivas e produtos incríveis para você se cuidar todos os dias.</p>
+    </section>
+    <div class="beneficios-pai">
+    <section class="beneficios">
+          <div class="beneficio">
+            <img src="https://img.icons8.com/fluency-systems-regular/48/228BE6/delivery.png" alt="Entrega">
+            <div>
+              <strong>Entrega</strong>
+              <p>Envio para todo o Brasil</p>
+            </div>
+          </div>
+
+          <div class="beneficio">
+            <img src="https://img.icons8.com/fluency-systems-regular/48/228BE6/bank-card-back-side.png" alt="Parcelamento">
+            <div>
+              <strong>Parcele suas compras</strong>
+              <p>No cartão de crédito</p>
+            </div>
+          </div>
+
+          <div class="beneficio">
+            <img src="https://img.icons8.com/fluency-systems-regular/48/228BE6/barcode.png" alt="Atacado">
+            <div>
+              <strong>Compre no Atacado</strong>
+              <p>Pedido mínimo de R$ 300,00</p>
+            </div>
+          </div>
+
+          <div class="beneficio">
+            <img src="https://img.icons8.com/fluency-systems-regular/48/228BE6/sale-price-tag.png" alt="Pix">
+            <div>
+              <strong>5% OFF no PIX</strong>
+              <p>Compre com mais desconto</p>
+            </div>
+          </div>
+    </section>
+    </div>
+
+
+
+     <!-- Carrossel -->
+ <div id="carousel1" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carousel1" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carousel1" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carousel1" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="https://picsum.photos/1600/500?random=5" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>First slide label</h5>
+        <p>Some representative placeholder content for the first slide.</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="https://picsum.photos/1600/500?random=6" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Second slide label</h5>
+        <p>Some representative placeholder content for the second slide.</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="https://picsum.photos/1600/500?random=8" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Third slide label</h5>
+        <p>Some representative placeholder content for the third slide.</p>
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carousel1" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carousel1" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+<!-- ================= Informativo ================= -->
+<section class="info-section">
+    <h2>Cuide-se com atenção</h2>
+    <div class="info-cards">
+
+        <!-- Card 1: Autocuidado -->
+        <div class="info-card">
+            <i class="fas fa-heart fa-2x" style="color:#e74c3c;"></i>
+            <h3>Autocuidado Diário</h3>
+            <p>Praticar hábitos saudáveis, hidratação e momentos de relaxamento ajudam a melhorar sua qualidade de vida. <i class="fas fa-smile-beam"></i></p>
+        </div>
+
+        <!-- Card 2: Produtos Naturais -->
+        <div class="info-card">
+            <i class="fas fa-leaf fa-2x" style="color:#27ae60;"></i>
+            <h3>Por que usar produtos naturais?</h3>
+            <p>Produtos naturais respeitam a sua pele, reduzem alergias e possuem benefícios terapêuticos. <i class="fas fa-spa"></i></p>
+        </div>
+
+        <!-- Card 3: Alimentação saudável -->
+        <div class="info-card">
+            <i class="fas fa-apple-alt fa-2x" style="color:#f39c12;"></i>
+            <h3>Alimentação equilibrada</h3>
+            <p>Manter uma dieta balanceada ajuda seu corpo a absorver melhor os nutrientes e aumenta sua energia. <i class="fas fa-carrot"></i></p>
+        </div>
+
+        <!-- Card 4: Exercícios -->
+        <div class="info-card">
+            <i class="fas fa-running fa-2x" style="color:#3498db;"></i>
+            <h3>Exercícios regulares</h3>
+            <p>Atividades físicas diárias mantêm a saúde cardiovascular e reduzem o estresse. <i class="fas fa-dumbbell"></i></p>
+        </div>
+
+        <!-- Card 5: Sono de qualidade -->
+        <div class="info-card">
+            <i class="fas fa-bed fa-2x" style="color:#9b59b6;"></i>
+            <h3>Sono de qualidade</h3>
+            <p>Ter boas noites de sono ajuda na regeneração celular, memória e bem-estar geral. <i class="fas fa-moon"></i></p>
+        </div>
+
+        <!-- Card 6: Hidrate-se -->
+        <div class="info-card">
+            <i class="fas fa-tint fa-2x" style="color:#1abc9c;"></i>
+            <h3>Hidratação diária</h3>
+            <p>Beber água regularmente mantém a pele saudável e melhora o funcionamento do corpo. <i class="fas fa-water"></i></p>
+        </div>
+
+    </div>
+</section>
+    <!-- Nova Seção de Promoção -->
+
+        <!-- cardsquadrados-->
+
+<div class="cardsquadrados" style="margin: 5%;">
+  <div class="row mt-3">
+
+    <!-- Card 1 -->
+    <div class="col-sm-6 mb-3">
+      <div class="custom-card" style="background-image: url('{{ url_for('static', filename='body-splash.png') }}');">
+        <div class="overlay">
+          <h2>BODY SPLASH</h2>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="col-sm-6 mb-3">
+      <div class="custom-card" style="background-image: url('{{ url_for('static', filename='kits-capilares.png') }}');">
+        <div class="overlay">
+          <h2>KITS CAPILARES</h2>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="col-sm-6 mb-3">
+      <div class="custom-card" style="background-image: url('{{ url_for('static', filename='linha-corporal.png') }}');">
+        <div class="overlay">
+          <h2>LINHA CORPORAL</h2>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="col-sm-6 mb-3">
+      <div class="custom-card" style="background-image: url('{{ url_for('static', filename='skincare.png') }}');">
+        <div class="overlay">
+          <h2>SKINCARE</h2>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+ <!-- ================= CARD PROMOÇOES ================= -->
+    <div class="centrodestaques" style="margin: 5%">
+       <div class="destaques">
+           <h2 style="text-align: center;">Destaques</h2>
+        <div class="row">
+          <div class="col-md-3 col-sm-6 mb-3">
+              <div class="card promo-card">
+                <div class="position-relative">
+                  <img src="https://picsum.photos/1600/500?random=10" class="card-img-top" alt="Combo Iniciante">
+                  <span class="badge-desconto">21% OFF</span>
+                </div>
+                <div class="card-body text-center">
+                  <h5 class="card-title">COMBO INICIANTE</h5>
+                  <p class="preco-antigo">R$381,44</p>
+                  <p class="preco-atual">R$300,00</p>
+                  <p class="parcelamento">12 x de R$29,01</p>
+                  <a href="#" class="btn btn-comprar">COMPRAR</a>
+                </div>
+              </div>
+            </div>
+          <div class="col-md-3 col-sm-6 mb-3">
+              <div class="card promo-card">
+                <div class="position-relative">
+                  <img src="https://picsum.photos/1600/500?random=11" class="card-img-top" alt="Combo Iniciante">
+                  <span class="badge-desconto">21% OFF</span>
+                </div>
+                <div class="card-body text-center">
+                  <h5 class="card-title">COMBO INICIANTE</h5>
+                  <p class="preco-antigo">R$381,44</p>
+                  <p class="preco-atual">R$300,00</p>
+                  <p class="parcelamento">12 x de R$29,01</p>
+                  <a href="#" class="btn btn-comprar">COMPRAR</a>
+                </div>
+              </div>
+            </div>
+          <div class="col-md-3 col-sm-6 mb-3">
+              <div class="card promo-card">
+                <div class="position-relative">
+                  <img src="https://picsum.photos/1600/500?random=12" class="card-img-top" alt="Combo Iniciante">
+                  <span class="badge-desconto">21% OFF</span>
+                </div>
+                <div class="card-body text-center">
+                  <h5 class="card-title">COMBO INICIANTE</h5>
+                  <p class="preco-antigo">R$381,44</p>
+                  <p class="preco-atual">R$300,00</p>
+                  <p class="parcelamento">12 x de R$29,01</p>
+                  <a href="#" class="btn btn-comprar">COMPRAR</a>
+                </div>
+              </div>
+            </div>
+          <div class="col-md-3 col-sm-6 mb-3">
+              <div class="card promo-card">
+                <div class="position-relative">
+                  <img src="https://picsum.photos/1600/500?random=13" class="card-img-top" alt="Combo Iniciante">
+                  <span class="badge-desconto">21% OFF</span>
+                </div>
+                <div class="card-body text-center">
+                  <h5 class="card-title">COMBO INICIANTE</h5>
+                  <p class="preco-antigo">R$381,44</p>
+                  <p class="preco-atual">R$300,00</p>
+                  <p class="parcelamento">12 x de R$29,01</p>
+                  <a href="#" class="btn btn-comprar">COMPRAR</a>
+                </div>
+              </div>
+            </div>
+        </div>
+           </div>
+        </div>
+        <div class="final">
+        <!-- ================= Feedback ================= -->
+    <section class="feedback-section">
+      <h2>O que nossos clientes dizem</h2>
+      <div class="feedback-cards">
+
+        <div class="feedback-card">
+    <img src="https://i.pravatar.cc/60?img=45" alt="João Santos" class="user-photo">
+          <div>
+            <strong>Ana Souza</strong>
+            <p>"Recebi meu pedido super rápido e amei a qualidade! Recomendo."</p>
+          </div>
+        </div>
+
+        <div class="feedback-card">
+    <img src="https://i.pravatar.cc/60?img=32" alt="Mariana Silva" class="user-photo">
+          <div>
+            <strong>Lucas Pereira</strong>
+            <p>"Produtos incríveis e atendimento impecável."</p>
+          </div>
+        </div>
+
+        <div class="feedback-card">
+    <img src="https://i.pravatar.cc/60?img=12" alt="Lucas Pereira" class="user-photo">      <div>
+            <strong>Mariana Silva</strong>
+            <p>"Já comprei várias vezes e nunca me arrependi."</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- BOTÃO FLUTUANTE WHATSAPP -->
+    <a href="https://wa.me/SEUNUMERO" class="whatsapp-float" target="_blank" title="Fale conosco no WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    <footer style="background-color: #8fa9dd;color: #fff;   font-family: Arial, sans-serif;
+    ">
+      <footer class="newsletter-footer">
+        <div class="footer-container">
+            <!-- Logo -->
+            <div class="footer-logo">
+                <img src="{{ url_for('static', filename='lotus.png') }}" alt="Logo Radiance">
+                <span class="footer-title">Radiance</span>
+            </div>
+
+            <!-- Texto + Formulário -->
+            <div class="footer-newsletter">
+                <p>Receba nossas novidades por e-mail</p>
+                <form class="newsletter-form">
+                    <input type="text" placeholder="Nome completo" required>
+                    <input type="email" placeholder="E-mail" required>
+                    <button type="submit">OK</button>
+                </form>
+            </div>
+
+            <!-- Redes sociais -->
+            <div class="footer-social">
+                <a href="#"><i class="bi bi-instagram"></i></a>
+                <a href="#"><i class="bi bi-tiktok"></i></a>
+            </div>
+        </div>
+    </footer>
+
+
+
+
+
+
+      <div class="informacoespagamento">
+
+        <!-- SOBRE NÓS -->
+        <div class="rodapepagamento" style="flex:1; min-width:250px; margin:15px;">
+          <h3>Sobre Nós</h3>
+          <p style="line-height:1.6; text-align: center;">
+            Na RADIANCE, você compra em atacado a preço de fábrica,
+            sem a necessidade de comprar caixas fechadas, garantindo variedade e
+            o melhor preço para sua loja. Nosso compromisso é sempre oferecer o melhor
+            para o seu negócio, pois o seu sucesso é o nosso sucesso!
+          </p>
+        </div>
+
+
+
+        <!-- CONTATO -->
+        <div class="rodapepagamento">
+          <h3>Entre em contato</h3>
+          <p>📱 (77) 98155-0243</p>
+          <p>✉️ suporte@seudominio.com.br</p>
+          <p style="text-align: center;">📍 Endereço: Av. Centenário, 408 , Centro, Vitória da Conquista</p>
+        </div>
+        <div class="rodapepagamento">
+            <h3 style="text-align: center;">Formas de pagamento</h3>
+        <div style="display:flex; flex-wrap:wrap; gap:10px; align-items:center; text-align: center;">
+          <img src="https://img.icons8.com/color/48/visa.png" alt="Visa" height="35">
+          <img src="https://img.icons8.com/color/48/mastercard.png" alt="Mastercard" height="35">
+          <img src="https://img.icons8.com/color/48/amex.png" alt="American Express" height="35">
+          <img src="https://logospng.org/download/pix/logo-pix-icone-512.png" alt="Pix" height="35">
+          <img src="https://img.icons8.com/fluency/48/barcode.png" alt="Boleto" height="35">
+        </div>
+    </div>
+    <div class="rodapepagamento">
+            <h3>Segurança</h3>
+            <div style="display:flex; flex-wrap:wrap; gap:10px; align-items:center;">
+              <img src="https://img.icons8.com/fluency/48/security-checked.png" alt="SSL Seguro" height="35">
+              <img src="https://img.icons8.com/color/48/google-logo.png" alt="Google Safe" height="35">
+            </div>
+              </div>
+    </footer>
+    <footer class="rodape">
+        <p>&copy; 2025 Radiance. Todos os direitos reservados.</p>
+    </footer>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+
+<script>
+document.querySelectorAll('.carousel-container, .carousel-container2').forEach(container => {
+    const track = container.querySelector('.carousel-track') || container.querySelector('.carousel-track2');
+    const slides = Array.from(track.children);
+    const prevButton = container.querySelector('.carousel-button.prev');
+    const nextButton = container.querySelector('.carousel-button.next');
+    let currentIndex = 0;
+
+    function updateCarousel() {
+        const slideWidth = slides[0].clientWidth;
+        track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+    }
+
+    nextButton.addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % slides.length;
+        updateCarousel();
+    });
+
+    prevButton.addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+        updateCarousel();
+    });
+
+    window.addEventListener('resize', updateCarousel);
+
+    setInterval(() => nextButton.click(), 50000);
+});
+</script>
+<script>
+function buscar() {
+    let termo = document.getElementById("searchInput").value;
+    if(termo.trim() !== "") {
+        window.location.href = "/buscar?q=" + encodeURIComponent(termo);
+    }
+}
+</script>
+<script>
+function buscar() {
+    let termo = document.getElementById("searchInput").value;
+    if (termo.trim() !== "") {
+        // redireciona para a rota de busca passando o termo
+        window.location.href = "/buscar?q=" + encodeURIComponent(termo);
+    }
+}
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+
+</body>
+</html>
